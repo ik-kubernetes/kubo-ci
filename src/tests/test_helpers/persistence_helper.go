@@ -17,7 +17,7 @@ func UndeployGuestBook(kubectl *KubectlRunner) {
 
 func DeployGuestBook(kubectl *KubectlRunner) {
 	guestBookSpec := PathFromRoot("specs/pv-guestbook.yml")
-	Eventually(kubectl.StartKubectlCommand("apply", "-f", guestBookSpec), 5*kubectl.TimeoutInSeconds).Should(gexec.Exit(0))
+	Eventually(kubectl.StartKubectlCommand("apply", "-f", guestBookSpec), 10*kubectl.TimeoutInSeconds).Should(gexec.Exit(0))
 	WaitForPodsToRun(kubectl, 5*kubectl.TimeoutInSeconds)
 }
 
